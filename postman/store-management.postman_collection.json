@@ -1,0 +1,36 @@
+{
+  "info": {
+    "name": "Store Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Basic YWRtaW46c2VjcmV0MTIz" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/products", "host": ["{{baseUrl}}"], "path": ["api","products"] },
+        "body": { "mode": "raw", "raw": "{ \"name\": \"PMProd\", \"description\": \"Postman product\", \"price\": 25.00 }" }
+      }
+    },
+    {
+      "name": "Get Product",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Basic YWRtaW46c2VjcmV0MTIz" } ],
+        "url": { "raw": "{{baseUrl}}/api/products/:id", "host": ["{{baseUrl}}"], "path": ["api","products",":id"] }
+      }
+    },
+    {
+      "name": "Update Price",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Authorization", "value": "Basic YWRtaW46c2VjcmV0MTIz" } ],
+        "url": { "raw": "{{baseUrl}}/api/products/:id/price?newPrice=30.00", "host": ["{{baseUrl}}"], "path": ["api","products",":id","price"], "query": [ { "key": "newPrice", "value": "30.00" } ] }
+      }
+    }
+  ]
+}
