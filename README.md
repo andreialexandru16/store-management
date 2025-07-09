@@ -21,14 +21,12 @@ test/
 - **Entity:** `Product` (id, name, description, price)  
 - **JPA/Hibernate:** `spring-boot-starter-data-jpa`  
 - **Database:** H2 in-memory  
-- **Place for screenshot:** H2 console showing `PRODUCTS` table
 ![image](https://github.com/user-attachments/assets/f4b6300d-18c1-4cb8-b845-08974b8d54ae)
 ![image](https://github.com/user-attachments/assets/3231cdb6-8b17-4b4f-8f36-c985de72d3ee)
 
 ##  3. Security
 - **Basic HTTP Auth** with in-memory user “admin”/“secret123”  
 - Role-based: only `ROLE_ADMIN` can access `/api/**`  
-- Open access to H2-console & Swagger UI  
 ![image](https://github.com/user-attachments/assets/35c05b74-4199-45f0-99e1-9d6203a8f214)
 
 ##  4. REST Endpoints
@@ -65,6 +63,7 @@ test/
 ![image](https://github.com/user-attachments/assets/44490acf-b579-44a1-8c81-ad49581ae0b6)
 ![image](https://github.com/user-attachments/assets/d250a966-5e64-4bb7-a78b-ae7c2cc423bc)
 ![image](https://github.com/user-attachments/assets/57b7c8f1-4da5-41c6-b64d-913a6c4c2929)
+
 
 
 
