@@ -25,26 +25,27 @@ class ProductControllerIntegrationTest {
 
     @Test
     void addAndGetProduct() {
-        // Basic Auth (admin:secret123)
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBasicAuth("admin", "secret123");
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        // tell TestRestTemplate to use admin:secret123 for every call
+        TestRestTemplate authRest = restTemplate.withBasicAuth("admin","secret123");
 
+        // create a new product
         Product newProd = new Product(null, "IntTestProd", "Integration test product", new BigDecimal("49.99"));
-        HttpEntity<Product> request = new HttpEntity<>(newProd, headers);
 
-        // POST
-        ResponseEntity<Product> postResponse = restTemplate.postForEntity(baseUrl(), request, Product.class);
+        // POST /api/products
+        ResponseEntity<Product> postResponse =
+                authRest.postForEntity(baseUrl(), newProd, Product.class);
+
         assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         Product created = postResponse.getBody();
         assertThat(created).isNotNull();
         assertThat(created.getId()).isNotNull();
 
-        // GET
-        ResponseEntity<Product> getResponse = restTemplate.exchange(
-                baseUrl() + "/" + created.getId(), HttpMethod.GET,
-                new HttpEntity<>(headers), Product.class);
+        // GET /api/products/{id}
+        ResponseEntity<Product> getResponse =
+                authRest.getForEntity(baseUrl() + "/" + created.getId(), Product.class);
+
         assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(getResponse.getBody().getName()).isEqualTo("IntTestProd");
     }
 }
+
