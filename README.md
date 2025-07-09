@@ -55,6 +55,17 @@ test/
 ![image](https://github.com/user-attachments/assets/cb9e669e-7943-43cf-95b9-73cd79c75bd3)
 ![image](https://github.com/user-attachments/assets/cffdbdb7-a563-4a2d-833d-8ed0b8c648da)
 
+##  8. Postman Collection
+- **Collection:** “Store Management API”  
+- **Requests:** Add Product, Get Product, Update Price  
+- **Environment variable:** `baseUrl = http://localhost:8080`  
+![image](https://github.com/user-attachments/assets/df2c3935-2955-4802-a4c4-34ea9a77a0f3)
+![image](https://github.com/user-attachments/assets/955f05c7-4b8b-4507-b96c-031b729ec998)
+![image](https://github.com/user-attachments/assets/96e7e26b-a747-4255-8387-d9fe8b71df78)
+![image](https://github.com/user-attachments/assets/44490acf-b579-44a1-8c81-ad49581ae0b6)
+![image](https://github.com/user-attachments/assets/d250a966-5e64-4bb7-a78b-ae7c2cc423bc)
+![image](https://github.com/user-attachments/assets/57b7c8f1-4da5-41c6-b64d-913a6c4c2929)
+
 
 
 
