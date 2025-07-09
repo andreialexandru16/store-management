@@ -4,15 +4,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -30,28 +31,23 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(admin);
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf
-                        // only disable for H2 console
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
-                )
-                .headers(headers -> headers
-                        .frameOptions(frame -> frame.sameOrigin())
-                )
+                .csrf(csrf -> csrf.disable())
+                // BasicAuth
+                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        // public paths
                         .requestMatchers(
                                 "/h2-console/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
                         ).permitAll()
-                        // everything else needs ADMIN
                         .anyRequest().hasRole("ADMIN")
                 )
-                .httpBasic(Customizer.withDefaults());
-
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
+        ;
         return http.build();
     }
 }
